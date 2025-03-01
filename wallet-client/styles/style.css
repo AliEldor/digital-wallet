@@ -107,3 +107,34 @@ label {
   margin-right: 8px;
 }
 
+@media (max-width: 688px) {
+  .login-container {
+    margin-top: 45px;
+  }
+  .login-area{
+    width: 80%;
+    display: block;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  .a,
+  .google-signin{
+    font-size: 16px;
+  }
+  label{
+    font-size: 17px;
+  }
+  
+  .fa-google{
+    font-size: 18px;
+  }
+  
+  .login-btn{
+    font-size: 17px;
+    height: 40px;
+    margin-top: 6px;
+  }
+  .login{
+    height: 36px !important;
+  }
+}
