@@ -32,4 +32,28 @@ if (isset($_POST['name']) && isset($_POST['email']) && isset($_POST['password'])
     mysqli_execute($stmt);
     $result = mysqli_stmt_get_result($stmt);
 
-    
+    if (mysqli_num_rows($result) > 0) {
+        $errors[] = "Email already exists";
+    }
+    if (!empty($errors)) {
+        $response["success"] = false;
+        $response["message"] = "Registration failed";
+        $response["errors"] = $errors;
+    } else {
+        $stmt = mysqli_prepare($conn, "INSERT INTO users (full_name, email, password) VALUES (?, ?, ?)");
+        mysqli_stmt_bind_param($stmt, "sss", $fullName, $email, $passwordHash);
+        mysqli_stmt_execute($stmt);
+
+        if ($stmt) {
+            $response["success"] = true;
+            $response["message"] = "Registration successful";
+        } else {
+            $response["success"] = false;
+            $response["message"] = "Something went wrong: " . mysqli_error($conn);
+        }
+    }
+} else {
+    $response["message"] = "Missing required fields";
+}
+
+echo json_encode($response);
