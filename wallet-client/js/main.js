@@ -37,7 +37,42 @@ document.addEventListener("DOMContentLoaded", function () {
             console.log(error);
           });
       };
+
+      function handleLogin(event){
+        //console.log("Login handler called");
+        event.preventDefault();
+        //console.log("Default prevented");
+
+        const formData = new FormData(event.target);
+        
+        
+  
+        axios
+            .post("../wallet-server/models/login.php", formData)
+            .then(function (response) {
+              console.log(response)
+              if (response.data.success) {
+                //alert("Login successful!");
+                window.location.href = "../pages/dashboard.html";
+              } else {
+                  if (response.data.errors && response.data.errors.length > 0) {
+                      const errorMessage = response.data.errors.join("\n");
+                      console.log(errorMessage)
+                      alert(errorMessage);  
+                    } else {
+                      // General message if no specific errors
+                      alert(response.data.message || "Login failed");  
+                    }
+              }
+            })
+            .catch(function (error) {
+              alert("Connection error. Please try again later.");
+              console.log(error);
+            });
+        };
+
+        
     
-      
+
 
   
