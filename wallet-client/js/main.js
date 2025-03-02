@@ -53,7 +53,7 @@ document.addEventListener("DOMContentLoaded", function () {
               console.log(response)
               if (response.data.success) {
                 //alert("Login successful!");
-                window.location.href = "../pages/dashboard.html";
+                window.location.href = "../../../digital-wallet/wallet-client/pages/dashboard.html";
               } else {
                   if (response.data.errors && response.data.errors.length > 0) {
                       const errorMessage = response.data.errors.join("\n");
