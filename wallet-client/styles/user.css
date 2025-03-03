@@ -103,20 +103,19 @@ nav a:hover {
   .nav-links li {
     display: block;
     margin: 10px 0;
-}
+  }
 
-.nav-links li a {
+  .nav-links li a {
     display: block;
     padding: 10px;
-}
+  }
 
-.menu-icon {
-    display: block; 
-}
-.nav-links.open {
+  .menu-icon {
+    display: block;
+  }
+  .nav-links.open {
     display: flex;
-}
-
+  }
 }
 
 .sub-menu-wrap {
@@ -188,20 +187,65 @@ nav a:hover {
 */
 
 .card {
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    margin-bottom: 20px;
-    padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  padding: 20px;
 }
 .card-title {
-    font-size: 18px;
-    font-weight: 500;
-    margin-bottom: 15px;
-    color: #333;
+  font-size: 18px;
+  font-weight: 500;
+  margin-bottom: 15px;
+  color: #333;
 }
 
 /* user dashboard
 */
 
+.balance-card {
+  display: flex;
+  justify-content: space-between;
+  background-color: #3498db;
+  color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+.balance-label {
+  font-size: 14px;
+  margin-bottom: 5px;
+}
 
+balance-info {
+  display: flex;
+  align-items: flex-start;
+}
+.balance-amount {
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.add-money-btn {
+  display: flex;
+  justify-content: flex-end;
+  background-color: #2ecc71;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  transition: background-color 0.3s;
+  
+}
+.add-money-btn p{
+    text-align: center;
+    padding-top: 10px;
+}
+.add-money-btn:hover {
+    background-color: #27ae60;
+}
+
+/* dashboard  Actions */
