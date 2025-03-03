@@ -27,7 +27,6 @@ main p {
 }
 .nav {
   width: 100%;
-  min-height: 100vh;
   background: #faf9f6;
   color: #525252;
 }
@@ -184,3 +183,25 @@ nav a:hover {
 .sub-menu-link:hover {
   font-weight: 600;
 }
+
+/* Card styles
+*/
+
+.card {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    padding: 20px;
+}
+.card-title {
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+/* user dashboard
+*/
+
+
