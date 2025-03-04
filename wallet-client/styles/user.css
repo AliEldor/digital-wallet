@@ -120,6 +120,8 @@ nav a:hover {
   .nav-links.open {
     display: flex;
   }
+
+  
 }
 
 .sub-menu-wrap {
@@ -234,10 +236,10 @@ nav a:hover {
   margin-bottom: 5px;
 }
 
-balance-info {
+/*.balance-info {
   display: flex;
   align-items: flex-start;
-}
+}*/
 .balance-amount {
   font-size: 24px;
   font-weight: 500;
@@ -316,3 +318,83 @@ balance-info {
 .scheduled {
     background-color: var(--scheduled-color);
 }
+
+.transaction-item {
+    background-color: #f8f9fa;
+    border: 1px solid #eaecef;
+    border-radius: 5px;
+    padding: 15px;
+    margin-bottom: 10px;
+    position: relative;
+    transition: transform 0.3s;
+}
+
+.transaction-item:hover {
+    transform: translateX(5px);
+}
+
+.transaction-title {
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.transaction-date {
+    font-size: 12px;
+    color: #888;
+}
+
+.transaction-amount {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-weight: 500;
+}
+
+.amount-negative {
+    color: #e74c3c;
+}
+
+.amount-positive {
+    color: #2ecc71;
+}
+
+.view-all-btn {
+    background-color: #f5f5f5;
+    border: 1px solid #ddd;
+    color: #666;
+    text-align: center;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background-color 0.3s;
+}
+
+.view-all-btn:hover {
+    background-color: #e9ecef;
+}
+
+
+@media (max-width: 768px) {
+    
+    .balance-card {
+      flex-direction: column;
+      gap: 15px;
+    }
+    
+    .add-money-btn {
+      align-self: flex-start;
+    }
+    
+    
+    .quick-actions {
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    
+    .action-item {
+      width: 48%;
+      margin-bottom: 10px;
+    }
+  }
