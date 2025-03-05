@@ -28,7 +28,14 @@ document.addEventListener("DOMContentLoaded", () => {
       .then((response) => {
         if (response.data.success) {
           recipientSelect.innerHTML = '<option value="">Select a user</option>';
-        }
+
+          response.data.users.forEach(user => {
+            const option = document.createElement('option');
+            option.value = user.id;
+            option.textContent = `${user.name} (ID: ${user.id})`;
+            recipientSelect.appendChild(option);
+
+        
       });
   }
 
