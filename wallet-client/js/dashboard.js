@@ -15,7 +15,17 @@ document.addEventListener("DOMContentLoaded", () => {
     addMoneyModal.classList.add("show");
   });
 
-  
+  closeModalButtons.forEach(button => {
+    button.addEventListener("click", () => {
+      addMoneyModal.classList.remove("show");
+    });
+  });
+
+  addMoneyModal.addEventListener("click", (e) => {
+    if (e.target === addMoneyModal) {
+      addMoneyModal.classList.remove("show");
+    }
+  });
 
   document.querySelector(".profile-pic").addEventListener("click", (event) => {
     event.stopPropagation();
