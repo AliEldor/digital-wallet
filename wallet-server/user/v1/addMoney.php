@@ -22,7 +22,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $amount = 0;
     }
 
-    
+    if ($userId > 0 && $amount > 0) {
+
+    $sql = "UPDATE wallets SET balance = balance + ? WHERE user_id = ?";
+        $stmt = mysqli_prepare($conn, $sql);
+        mysqli_stmt_bind_param($stmt, "di", $amount, $userId);
+        
+
+    }
 }
 
 echo json_encode($response);
