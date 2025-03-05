@@ -21,4 +21,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'){
 
         $wallet = mysqli_fetch_assoc($result);
 
-        
+        if ($wallet) {
+            $response["success"] = true;
+            $response["balance"] = $wallet['balance'];
+        } 
+        else {
+            $response["message"] = "No wallet found for this user";
+        }
+    }
+        else{
+            $response["message"] = "Invalid user ID";
+        }
+    }
+
+    echo json_encode($response);
+exit();
