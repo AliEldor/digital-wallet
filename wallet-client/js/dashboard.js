@@ -73,7 +73,18 @@ const formData = new FormData();
     }
 
 
-    
+    function logout() {
+        
+        localStorage.removeItem('userId');
+        localStorage.removeItem('userName');
+        
+        window.location.href = 'login.html';
+      }
+
+      const logoutLink = document.querySelector('.sub-menu-link[data-action="logout"]');
+  if (logoutLink) {
+    logoutLink.addEventListener('click', logout);
+  }
 
   fetchUserBalance()
 
