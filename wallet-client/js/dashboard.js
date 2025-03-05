@@ -41,6 +41,43 @@ document.addEventListener("DOMContentLoaded", () => {
     userNameElement.textContent = userName;
   }
 
+  function fetchUserBalance() {
+    const userId = localStorage.getItem('userId');
+
+    if (!userId) {
+        
+        window.location.href = '../index.html';
+        return;
+}
+
+const formData = new FormData();
+    formData.append('userId', userId);
+
+    axios.post('../../wallet-server/user/v1/getBalance.php', formData)
+      .then(response => {
+        if (response.data.success) {
+          
+          const formattedBalance = `$${parseFloat(response.data.balance).toFixed(2)}`;
+          balanceElement.textContent = formattedBalance;
+        } else {
+          console.error('Failed to fetch balance:', response.data.message);
+          console.log(response.data)
+          balanceElement.textContent = '$0.00';
+        }
+      })
+
+      .catch(error => {
+        console.error('Error fetching balance:', error);
+        balanceElement.textContent = '$0.00';
+      });
+    }
+
+
+    
+
+  fetchUserBalance()
+
   
+
   
 });
