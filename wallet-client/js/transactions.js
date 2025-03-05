@@ -19,5 +19,44 @@ document.addEventListener("DOMContentLoaded", () => {
             });
     }
 
+    function updateTransactionHistory(transactions) {
+        const transactionContainer = document.querySelector(".card");
+        
+        // Clear existing transactions(hardcoded)
+        const existingItems = transactionContainer.querySelectorAll(".transaction-item");
+        existingItems.forEach(item => item.remove());
+
+        // Create transaction items
+        transactions.forEach(transaction => {
+            const transactionItem = document.createElement("div");
+            transactionItem.classList.add("transaction-item");
+
+            
+            const transactionDate = new Date(transaction.created_at);
+            const formattedDate = transactionDate.toLocaleDateString('en-US', {
+                month: 'long',
+                day: 'numeric',
+                year: 'numeric'
+            });
+
+            // Determine amount sign and class
+            const amountClass = transaction.transaction_type === 'transfer' ? 'amount-negative' : 'amount-positive';
+            const amountSign = transaction.transaction_type === 'transfer' ? '-' : '+';
+
+            transactionItem.innerHTML = `
+                <div class="transaction-title"><p>${transaction.transaction_type}</p></div>
+                <div class="transaction-date"><p>${formattedDate}</p></div>
+                <div class="transaction-amount ${amountClass}">
+                    <p>${amountSign}$${parseFloat(transaction.amount).toFixed(2)}</p>
+                </div>
+            `;
+
+            
+            const viewAllBtn = transactionContainer.querySelector(".view-all-btn");
+            transactionContainer.insertBefore(transactionItem, viewAllBtn);
+        });
+    }
+
+    
     
 });
