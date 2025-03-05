@@ -43,5 +43,16 @@ $senderId = isset($_POST['senderId']) ? intval($_POST['senderId']) : 0;
             throw new Exception("Recipient not found");
         }
 
+        $balance_sql = "SELECT balance FROM wallets WHERE user_id = ?";
+            $balance_stmt = mysqli_prepare($conn, $balance_sql);
+            mysqli_stmt_bind_param($balance_stmt, "i", $senderId);
+            mysqli_stmt_execute($balance_stmt);
+            $balance_result = mysqli_stmt_get_result($balance_stmt);
+            $balance_row = mysqli_fetch_assoc($balance_result);
+
+            if ($balance_row['balance'] < $amount) {
+                throw new Exception("Insufficient balance");
+            }
+
 
     }
