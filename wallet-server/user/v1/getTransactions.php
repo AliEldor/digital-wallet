@@ -25,5 +25,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     created_at DESC
                 LIMIT 10";
 
+$stmt = mysqli_prepare($conn, $sql);
+mysqli_stmt_bind_param($stmt, "ii", $userId, $userId);
+
     }
 }
