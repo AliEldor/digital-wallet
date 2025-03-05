@@ -38,6 +38,8 @@ document.addEventListener("DOMContentLoaded", function () {
           });
       };
 
+
+
       function handleLogin(event){
         //console.log("Login handler called");
         event.preventDefault();
@@ -52,7 +54,10 @@ document.addEventListener("DOMContentLoaded", function () {
             .then(function (response) {
               console.log(response)
               if (response.data.success) {
+                localStorage.setItem('userId', response.data.user_id);
+                localStorage.setItem('userName', response.data.user_name);
                 //alert("Login successful!");
+                
                 window.location.href = "../../../digital-wallet/wallet-client/pages/dashboard.html";
               } else {
                   if (response.data.errors && response.data.errors.length > 0) {
