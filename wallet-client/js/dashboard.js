@@ -48,6 +48,25 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 }
 
+sendMoneyBtn.addEventListener("click", () => {
+    sendMoneyModal.classList.add("show");
+    fetchAvailableUsers(); 
+});
+
+closeModalButtons.forEach(button => {
+    button.addEventListener("click", () => {
+        sendMoneyModal.classList.remove("show");
+    });
+});
+
+sendMoneyModal.addEventListener("click", (e) => {
+    if (e.target === sendMoneyModal) {
+        sendMoneyModal.classList.remove("show");
+    }
+});
+
+// end of send
+
   // add money functions
 
   addMoneyBtn.addEventListener("click", () => {
