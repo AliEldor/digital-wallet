@@ -2,6 +2,8 @@ document.addEventListener("DOMContentLoaded", () => {
   let subMenu = document.getElementById("subMenu");
   let menuIcon = document.getElementById("menu-icon");
   let navLinks = document.querySelector(".nav-links");
+  let balanceElement = document.querySelector(".balance-amount p");
+  let userNameElement = document.querySelector(".sub-menu .user-info h3");
 
   document.querySelector(".profile-pic").addEventListener("click", (event) => {
     event.stopPropagation();
@@ -34,7 +36,11 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  
+  const userName = localStorage.getItem('userName');
+  if (userName) {
+    userNameElement.textContent = userName;
+  }
 
+  
   
 });
