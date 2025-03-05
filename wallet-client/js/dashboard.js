@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
+    
   let subMenu = document.getElementById("subMenu");
   let menuIcon = document.getElementById("menu-icon");
   let navLinks = document.querySelector(".nav-links");
@@ -17,6 +18,11 @@ document.addEventListener("DOMContentLoaded", () => {
   const sendMoneyModal = document.getElementById("sendMoneyModal");
   const sendMoneyForm = document.getElementById("send-money-form");
   const recipientSelect = document.getElementById("recipient-select");
+
+  console.log("addMoneyBtn:", addMoneyBtn);
+  console.log("addMoneyModal:", addMoneyModal);
+  console.log("closeModalButtons:", closeModalButtons);
+  console.log("addMoneyForm:", addMoneyForm);
 
   function fetchAvailableUsers() {
     const userId = localStorage.getItem("userId");
@@ -75,6 +81,28 @@ sendMoneyForm.addEventListener("submit", (e) => {
         formData.append('senderId', userId);
         formData.append('recipientId', recipientId);
         formData.append('amount', amount);
+
+        axios.post('../../wallet-server/user/v1/sendMoney.php', formData)
+        .then(response =>{
+            if (response.data.success) {
+                
+                balanceElement.textContent = `$${parseFloat(response.data.new_balance).toFixed(2)}`;
+                
+                
+                sendMoneyModal.classList.remove("show");
+                sendMoneyForm.reset();
+
+                fetchTransactions();
+
+                alert('Money sent successfully!');
+            }
+        })
+
+        .catch(error => {
+            console.error('Send money error:', error);
+            alert('An error occurred while sending money');
+        });
+    });
 
 // end of send
 
