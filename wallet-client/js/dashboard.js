@@ -18,6 +18,12 @@ document.addEventListener("DOMContentLoaded", () => {
   const sendMoneyForm = document.getElementById("send-money-form");
   const recipientSelect = document.getElementById("recipient-select");
 
+  function fetchAvailableUsers() {
+    const userId = localStorage.getItem('userId');
+    const formData = new FormData();
+    formData.append('currentUserId', userId);
+  }
+
   
 
 
