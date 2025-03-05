@@ -51,7 +51,31 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             throw new Exception("Failed to update wallet balance");
         }
 
+        // Record the transaction
+        $sql = "INSERT INTO transactions (sender_id, recipient_id, amount, transaction_type) VALUES (?, ?, ?, 'withdrawal')";
+        $stmt = mysqli_prepare($conn, $sql);
+        mysqli_stmt_bind_param($stmt, "iid", $userId, $userId, $amount);
+        $insertResult = mysqli_stmt_execute($stmt);
+
+        if (!$insertResult) {
+            throw new Exception("Failed to record transaction");
+        }
+
+        mysqli_commit($conn);
+
+        $response["success"] = true;
+        $response["message"] = "Withdrawal successful";
+        $response["new_balance"] = $newBalance;
+
     }
 
-
+    catch (Exception $e) {
+        // Rollback transaction on error
+        mysqli_rollback($conn);
+        $response["message"] = $e->getMessage();
+    }
 }
+
+echo json_encode($response);
+exit();
+
