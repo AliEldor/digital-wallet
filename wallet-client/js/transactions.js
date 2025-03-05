@@ -58,5 +58,22 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     
-    
+    fetchTransactions();
+
+    // refresh transactions after money sendin
+    const addMoneyForm = document.getElementById("add-money-form");
+    const sendMoneyForm = document.getElementById("send-money-form");
+
+    function refreshTransactionsAfterAction(event) {
+        event.preventDefault();
+        setTimeout(fetchTransactions, 500);
+    }
+
+    if (addMoneyForm) {
+        addMoneyForm.addEventListener("submit", refreshTransactionsAfterAction);
+    }
+
+    if (sendMoneyForm) {
+        sendMoneyForm.addEventListener("submit", refreshTransactionsAfterAction);
+    }
 });
