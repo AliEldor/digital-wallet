@@ -27,6 +27,39 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
+  
+
+  addMoneyForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const amount = document.getElementById("amount").value;
+
+    const userId = localStorage.getItem('userId');
+    const formData = new FormData();
+    formData.append('userId', userId);
+    formData.append('amount', amount);
+
+    axios.post('../../wallet-server/user/v1/addMoney.php',formData)
+    .then(response =>{
+        if (response.data.success) {
+
+            balanceElement.textContent = `$${parseFloat(response.data.new_balance).toFixed(2)}`;
+
+            addMoneyModal.classList.remove("show");
+
+            addMoneyForm.reset();
+        }
+        else {
+            alert(response.data.message);
+          }
+  })
+  .catch(error => {
+    console.error('Add money error:', error);
+    alert('An error occurred while adding money');
+  });
+});
+
+// end of add money
+
   document.querySelector(".profile-pic").addEventListener("click", (event) => {
     event.stopPropagation();
     subMenu.classList.toggle("open-menu");
