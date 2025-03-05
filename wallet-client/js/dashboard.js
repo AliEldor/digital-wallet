@@ -65,6 +65,17 @@ sendMoneyModal.addEventListener("click", (e) => {
     }
 });
 
+sendMoneyForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const recipientId = recipientSelect.value;
+    const amount = document.getElementById("send-amount").value;
+
+    const userId = localStorage.getItem('userId');
+        const formData = new FormData();
+        formData.append('senderId', userId);
+        formData.append('recipientId', recipientId);
+        formData.append('amount', amount);
+
 // end of send
 
   // add money functions
