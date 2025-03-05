@@ -38,6 +38,15 @@ document.addEventListener("DOMContentLoaded", () => {
         
       });
   }
+  else{
+    console.error('Failed to fetch users:', response.data.message);
+  }
+})
+
+.catch(error => {
+    console.error('Error fetching users:', error);
+});
+}
 
   // add money functions
 
