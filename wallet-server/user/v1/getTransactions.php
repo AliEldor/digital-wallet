@@ -28,5 +28,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 $stmt = mysqli_prepare($conn, $sql);
 mysqli_stmt_bind_param($stmt, "ii", $userId, $userId);
 
+if (mysqli_stmt_execute($stmt)) {
+    $result = mysqli_stmt_get_result($stmt);
+    
+    while ($row = mysqli_fetch_assoc($result)) {
+        $response['transactions'][] = $row;
+    }
+
+    $response['success'] = true;
+    $response['message'] = "Transactions fetched successfully";
+}
+
     }
 }
