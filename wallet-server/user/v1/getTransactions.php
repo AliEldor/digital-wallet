@@ -38,6 +38,15 @@ if (mysqli_stmt_execute($stmt)) {
     $response['success'] = true;
     $response['message'] = "Transactions fetched successfully";
 }
+else {
+    $response['message'] = "Error executing query";
+}
 
     }
+    else{
+        $response['message'] = "User ID not provided";
+    }
 }
+
+echo json_encode($response);
+exit();
