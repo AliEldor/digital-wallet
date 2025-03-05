@@ -19,20 +19,19 @@ document.addEventListener("DOMContentLoaded", () => {
   const recipientSelect = document.getElementById("recipient-select");
 
   function fetchAvailableUsers() {
-    const userId = localStorage.getItem('userId');
+    const userId = localStorage.getItem("userId");
     const formData = new FormData();
-    formData.append('currentUserId', userId);
+    formData.append("currentUserId", userId);
+
+    axios
+      .post("../../wallet-server/user/v1/getUsers.php", formData)
+      .then((response) => {
+        if (response.data.success) {
+          recipientSelect.innerHTML = '<option value="">Select a user</option>';
+        }
+      });
   }
 
-  
-
-
-
-
-  
-  
-  
-  
   // add money functions
 
   addMoneyBtn.addEventListener("click", () => {
