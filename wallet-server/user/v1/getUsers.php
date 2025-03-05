@@ -23,5 +23,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         mysqli_stmt_bind_param($stmt, "i", $currentUserId);
         mysqli_stmt_execute($stmt);
         $result = mysqli_stmt_get_result($stmt);
-    
+
+        $users = [];
+        while ($row = mysqli_fetch_assoc($result)) {
+            $users[] = [
+                'id' => $row['id'],
+                'name' => $row['full_name']
+            ];
+        }
+
+        $response["success"] = true;
+        $response["users"] = $users;
+    } else {
+        $response["message"] = "Invalid user ID";
+    }
 }
+
+echo json_encode($response);
+exit();
+    
