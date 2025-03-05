@@ -35,4 +35,36 @@ document.addEventListener("DOMContentLoaded", () => {
             }
             
             
+            const formData = new FormData();
+            formData.append("userId", userId);
+            formData.append("amount", withdrawAmount);
+            
+            
+            axios.post("../../wallet-server/user/v1/withdraw.php", formData)
+                .then(response => {
+                    if (response.data.success) {
+                        // Update balance display
+                        const balanceElement = document.querySelector(".balance-amount p");
+                        balanceElement.textContent = `$${parseFloat(response.data.new_balance).toFixed(2)}`;
+                        
+                        
+                        document.getElementById("withdraw-amount").value = "";
+                        
+                        withdrawSection.style.display = "none";
+                          
+                        alert("Withdrawal successful!");
+                        
+                        if (typeof fetchTransactions === 'function') {
+                            fetchTransactions();
+                        }
+                    } else {
+                        alert(response.data.message || "Failed to withdraw money");
+                    }
+                })
+                .catch(error => {
+                    console.error("Withdraw error:", error);
+                    alert("An error occurred during withdrawal");
+                });
+        });
+    }
 });
