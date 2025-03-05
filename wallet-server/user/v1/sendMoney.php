@@ -54,5 +54,10 @@ $senderId = isset($_POST['senderId']) ? intval($_POST['senderId']) : 0;
                 throw new Exception("Insufficient balance");
             }
 
+            $deduct_sql = "UPDATE wallets SET balance = balance - ? WHERE user_id = ?";
+            $deduct_stmt = mysqli_prepare($conn, $deduct_sql);
+            mysqli_stmt_bind_param($deduct_stmt, "di", $amount, $senderId);
+            mysqli_stmt_execute($deduct_stmt);
+
 
     }
