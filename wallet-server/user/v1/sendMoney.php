@@ -9,6 +9,8 @@ $response = [
     "errors" => []
 ];
 
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
 $senderId = isset($_POST['senderId']) ? intval($_POST['senderId']) : 0;
     $recipientId = isset($_POST['recipientId']) ? intval($_POST['recipientId']) : 0;
     $amount = isset($_POST['amount']) ? floatval($_POST['amount']) : 0;
@@ -37,7 +39,7 @@ $senderId = isset($_POST['senderId']) ? intval($_POST['senderId']) : 0;
             $recipient_result = mysqli_stmt_get_result($recipient_stmt);
             $recipient = mysqli_fetch_assoc($recipient_result);
 
-        }
+        
 
         if (!$recipient) {
             throw new Exception("Recipient not found");
@@ -80,5 +82,25 @@ $senderId = isset($_POST['senderId']) ? intval($_POST['senderId']) : 0;
             $response["success"] = true;
             $response["message"] = "Money sent successfully";
 
+            $new_balance_stmt = mysqli_prepare($conn, $balance_sql);
+            mysqli_stmt_bind_param($new_balance_stmt, "i", $senderId);
+            mysqli_stmt_execute($new_balance_stmt);
+            $new_balance_result = mysqli_stmt_get_result($new_balance_stmt);
+            $new_balance_row = mysqli_fetch_assoc($new_balance_result);
+            $response["new_balance"] = $new_balance_row['balance'];
 
+        
     }
+        catch(Exception $e){
+            mysqli_rollback($conn);
+            $response["message"] = $e->getMessage();
+        }
+    }
+    else{
+        $response["errors"] = $errors;
+    }
+}
+
+echo json_encode($response);
+exit();
+    
