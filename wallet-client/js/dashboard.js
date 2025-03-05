@@ -78,7 +78,7 @@ const formData = new FormData();
         localStorage.removeItem('userId');
         localStorage.removeItem('userName');
         
-        window.location.href = 'login.html';
+        window.location.href = '../index.html';
       }
 
       const logoutLink = document.querySelector('.sub-menu-link[data-action="logout"]');
