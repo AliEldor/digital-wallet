@@ -5,6 +5,18 @@ document.addEventListener("DOMContentLoaded", () => {
   let balanceElement = document.querySelector(".balance-amount p");
   let userNameElement = document.querySelector(".sub-menu .user-info h3");
 
+  // add money part
+  const addMoneyBtn = document.querySelector(".add-money-btn");
+  const addMoneyModal = document.getElementById("addMoneyModal");
+  const closeModalButtons = addMoneyModal.querySelectorAll(".close-modal");
+  const addMoneyForm = document.getElementById("add-money-form");
+
+  addMoneyBtn.addEventListener("click", () => {
+    addMoneyModal.classList.add("show");
+  });
+
+  
+
   document.querySelector(".profile-pic").addEventListener("click", (event) => {
     event.stopPropagation();
     subMenu.classList.toggle("open-menu");
