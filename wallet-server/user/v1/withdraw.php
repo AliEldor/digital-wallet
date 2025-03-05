@@ -36,6 +36,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         $currentBalance = floatval($wallet['balance']);
 
+        if ($currentBalance < $amount) {
+            throw new Exception("Insufficient funds");
+        }
+
+        // Update  balance
+        $newBalance = $currentBalance - $amount;
+        $sql = "UPDATE wallets SET balance = ? WHERE user_id = ?";
+        $stmt = mysqli_prepare($conn, $sql);
+        mysqli_stmt_bind_param($stmt, "di", $newBalance, $userId);
+        $updateResult = mysqli_stmt_execute($stmt);
+
+        if (!$updateResult) {
+            throw new Exception("Failed to update wallet balance");
+        }
+
     }
 
 
