@@ -1,5 +1,4 @@
 <?php
-session_start();
 include("../connection/connection.php");
 
 header('Content-Type: application/json');
@@ -41,9 +40,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             
             if (password_verify($password, $user["password"])) {
     
-                $_SESSION["user"] = "yes";
-                $_SESSION["user_id"] = $user["id"];
-                $_SESSION["user_name"] = $user["full_name"];
+                $response["user"] = "yes";
+                $response["user_id"] = $user["id"];
+                $response["user_name"] = $user["full_name"];
 
                 $response["success"] = true;
               
