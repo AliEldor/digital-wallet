@@ -16,4 +16,23 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
     
-    
+    if (withdrawBtn) {
+        withdrawBtn.addEventListener("click", function() {
+            
+            const withdrawAmount = document.getElementById("withdraw-amount").value;
+            
+            
+            if (!withdrawAmount || parseFloat(withdrawAmount) <= 0) {
+                alert("Please enter a valid amount to withdraw");
+                return;
+            }
+            
+            
+            const userId = localStorage.getItem("userId");
+            if (!userId) {
+                alert("You are not logged in. Please log in first.");
+                return;
+            }
+            
+            
+});
