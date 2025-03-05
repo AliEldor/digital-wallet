@@ -23,3 +23,25 @@ $senderId = isset($_POST['senderId']) ? intval($_POST['senderId']) : 0;
     if ($amount <= 0) {
         $errors[] = "Invalid amount";
     }
+
+    if (empty($errors)) {
+        // Start a transaction
+        mysqli_begin_transaction($conn);
+
+        try {
+            
+            $recipient_sql = "SELECT id FROM users WHERE id = ?";
+            $recipient_stmt = mysqli_prepare($conn, $recipient_sql);
+            mysqli_stmt_bind_param($recipient_stmt, "i", $recipientId);
+            mysqli_stmt_execute($recipient_stmt);
+            $recipient_result = mysqli_stmt_get_result($recipient_stmt);
+            $recipient = mysqli_fetch_assoc($recipient_result);
+
+        }
+
+        if (!$recipient) {
+            throw new Exception("Recipient not found");
+        }
+
+
+    }
