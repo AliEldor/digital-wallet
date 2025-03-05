@@ -59,5 +59,26 @@ $senderId = isset($_POST['senderId']) ? intval($_POST['senderId']) : 0;
             mysqli_stmt_bind_param($deduct_stmt, "di", $amount, $senderId);
             mysqli_stmt_execute($deduct_stmt);
 
+            // add to recipient wallet
+
+            $add_sql = "UPDATE wallets SET balance = balance + ? WHERE user_id = ?";
+            $add_stmt = mysqli_prepare($conn, $add_sql);
+            mysqli_stmt_bind_param($add_stmt, "di", $amount, $recipientId);
+            mysqli_stmt_execute($add_stmt);
+
+            // record the transaction:
+
+            $transaction_sql = "INSERT INTO transactions (sender_id, recipient_id, amount, transaction_type) 
+                    VALUES (?, ?, ?, 'transfer')";
+
+            $transaction_stmt = mysqli_prepare($conn, $transaction_sql);
+            mysqli_stmt_bind_param($transaction_stmt, "iid", $senderId, $recipientId, $amount);
+            mysqli_stmt_execute($transaction_stmt);
+
+            mysqli_commit($conn);// new function to save the data permanently
+
+            $response["success"] = true;
+            $response["message"] = "Money sent successfully";
+
 
     }
