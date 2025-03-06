@@ -1,4 +1,4 @@
-![ER Diagram](https://github.com/AliEldor/digital-wallet/raw/main/https://github.com/AliEldor/digital-wallet/blob/main/er-diagram.png)
+![ER Diagram](https://github.com/AliEldor/digital-wallet/raw/main/https://github.com/AliEldor/digital-wallet/blob/main/er-diagram.png?raw=true)
 
 github pages:
 admin: https://alieldor.github.io/wallet-admin-frontend/
