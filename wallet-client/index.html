@@ -9,10 +9,12 @@
     <link rel="stylesheet" href="./styles/style.css">
     <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
     <script src="https://kit.fontawesome.com/c0e27fec68.js" crossorigin="anonymous"></script>
+    
     <title>Login to Cash Up</title>
     
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    
+    <script src="../wallet-client/js/main.js" defer></script>
+
 </head>
 
 <body>
@@ -20,12 +22,12 @@
         <div class='login-container'>
             <div class='login-area'>
                 <h3>LOGIN TO Cash Up</h3>
-                <form class='login-items'>
+                <form id="login-form" class='login-items'">
                     <label for="username">Email</label>
                     <input type="email" class='login' name="email" placeholder='Enter you email' required />
                     <label for="password">Password</label>
                     <input type="password" class='login' name="password" placeholder="Enter Your Password" required />
-                    <input type="submit" class='login-btn' value="Login" />
+                    <input type="submit" class='login-btn' value="Login" name="login" />
                 </form>
                 <p class='Reg'>New to Cash Up? <a class='a' href="pages/register.html">Create an Account</a></p>
                 

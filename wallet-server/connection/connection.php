@@ -5,7 +5,7 @@ $dbPassword="";
 $dbName = "digitalwallet";
 $conn=mysqli_connect($hostName,$dbUser,$dbPassword,$dbName);
 if(!$conn){
-    die("something went wrong");
+    die("something went wrong") . mysqli_connect_error();
 }
 
 

@@ -458,6 +458,38 @@ nav a:hover {
   color: white;
 }
 
+.withdraw-section {
+  margin: 15px 0;
+  padding: 10px;
+  background-color: #f8f8f8;
+  border-radius: 5px;
+}
+
+.withdraw-input-group {
+  display: flex;
+  gap: 10px;
+}
+
+#withdraw-amount {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+#withdraw-btn {
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+#withdraw-btn:hover {
+  background-color: #c0392b;
+}
+
 
 @media (max-width: 768px) {
     

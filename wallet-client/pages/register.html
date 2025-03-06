@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="../styles/style.css">
     <script src="https://kit.fontawesome.com/c0e27fec68.js" crossorigin="anonymous"></script>
     <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+    <script src="../js/main.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js" defer></script>
     <title>Sign Up to Cash Up</title>
 </head>
 
@@ -17,14 +19,14 @@
         <div class='login-container'>
             <div class='login-area'>
                 <h3>REGISTER TO Cash Up</h3>
-                <form class='login-items'>
+                <form id="register-form" class='login-items' method="POST">
                     <label for="name">Name</label>
                     <input type="text" class='login' name="name" placeholder='Enter your name' required />
                     <label for="email">Email</label>
                     <input type="email" class='login' name="email" placeholder="Enter your email" required />
                     <label for="password">Password</label>
                     <input type="password" class='login' name="password" id="" placeholder='Enter password' required />
-                    <input type="submit" class='login-btn' value="Register" />
+                    <input type="submit" class='login-btn' value="Register" name="submit"/>
                 </form>
                 <p class='reg'>Already have an account?
                     <a class='a' href="../index.html">Please Login</a>

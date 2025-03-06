@@ -92,7 +92,7 @@ sendMoneyForm.addEventListener("submit", (e) => {
                 sendMoneyModal.classList.remove("show");
                 sendMoneyForm.reset();
 
-                fetchTransactions();
+                //fetchTransactions();
 
                 alert('Money sent successfully!');
             }
@@ -221,6 +221,8 @@ sendMoneyForm.addEventListener("submit", (e) => {
       });
   }
 
+
+  //logout
   function logout() {
     localStorage.removeItem("userId");
     localStorage.removeItem("userName");
